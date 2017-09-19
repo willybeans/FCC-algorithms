@@ -1,5 +1,5 @@
 
-function missing(str) {
+function fearNotLetter(str) {
   //97 = a || 122 = z
   //65 = A || 90 = Z
   var array = str.split('');
@@ -14,4 +14,4 @@ function missing(str) {
          }
   console.log(id);
 }
-missing("abd");
+fearNotLetter("abce");
