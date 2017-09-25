@@ -3,28 +3,23 @@ function fearNotLetter(str) {
   //97 = a || 122 = z
   //65 = A || 90 = Z
   var array = str.split('');
-  var start = array[0];
-  var end;
-  var length = array.length - 1;
-  var test;
+  var missingLetter;
+  var a;
+  var b;
 
     for (let i = 0; i < array.length; i++) {
-        if (i === length) {
-          end = array[i];
-          start = start.charCodeAt();
-          end = end.charCodeAt();
-          test = end - start;
+        a = array[i]; //set letters
+        b = array[(i+1)];
+
+        a = a.charCodeAt(); //convert to numbers
+        b = b.charCodeAt();
+
+        if ((b - a) === 2){ // if missing space
+          missingLetter = String.fromCodePoint(b - 1);
+          console.log(missingLetter);
+          return;
         }
     }
 
-  console.log("missing letter?: " + test);
-  console.log("start: " + start);
-  console.log("end: " + end);
 }
 fearNotLetter("abce");
-
-// i === array.length then this is the last number
-// i === 0 then this is the first number
-//simply create a new array that has numbers spanning from start to finish
-//wait. but you need to return the missing character...
-//ok so compare the existing array with the new array and if {[x]doesnt //match} the we return that non matched number... :-) OK BYE
