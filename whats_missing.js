@@ -19,7 +19,12 @@ function fearNotLetter(str) {
           console.log(missingLetter);
           return;
         }
+        if ( i === array.length && (b-a) === 1 ){
+//so if the letters are in a sequence you need to send back undefined. whoops.
+          console.log("this isnt working...")
+          return;
+        }
     }
 
 }
-fearNotLetter("abce");
+fearNotLetter("yz");
