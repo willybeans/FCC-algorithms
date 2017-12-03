@@ -57,6 +57,7 @@
 // }
 //
 // sumFibs(1000);
+
 function sumFibs(num) {
   var a = 1;
   var b = 1;
@@ -74,9 +75,9 @@ function sumFibs(num) {
         }
       }
       total = a + b;
-//you need to add a condition in here to check the value of the two integers before being added together.
+you need to add a condition in here to check the value of the two integers before being added together.
        if (a < total && b < total) {
-          // you know what i mean?
+           you know what i mean?
           }
       console.log("a: " + a);
       console.log("b: " + b);
