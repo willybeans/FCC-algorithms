@@ -6,30 +6,21 @@ function fearNotLetter(str) {
   var missingLetter;
   var a;
   var b;
+  //instead of adding, you should subtract
 
-    for (let i = 0; i < array.length; i++) {
-        a = array[i]; //set letters
-        b = array[(i+1)]; //so this is getting set to higher than the array
+    for (let i = 1; i < array.length; i++) {
+        a = array[i-1]; //set letters
+        b = array[i];
 
-          if ( i < array.length){
-            console.log("hi");
-      a = a.charCodeAt(); //convert to numbers
-
-      b = b.charCodeAt();
-      } //still geting this annoying error
+        a = a.charCodeAt(); //convert to numbers this is fine
+        b = b.charCodeAt();
 
         if ((b - a) === 2){ // if missing space
           missingLetter = String.fromCodePoint(b - 1);
-          console.log(missingLetter);
-        //  return;
-        }
-        if ( i === array.length){
-//so if the letters are in a sequence you need to send back undefined. whoops.
-//so figure out why this isnt working
-          console.log("this isnt working...")
-          return;
+          return missingLetter;
+        } if ( i === array.length && (b-a) === 1 ){
+          return undefined;
         }
     }
-
 }
-fearNotLetter("yz");
+fearNotLetter("abce");
