@@ -3,15 +3,15 @@
 //   var b = 1;
 //   var total = 0;
 //   var oddTotal = 2;
-//   var final;
+//   var finalSum;
 //
 //   while (oddTotal < num){
 //    if (total % 2 != 0){
 //         oddTotal = oddTotal + total;
-//         final = oddTotal;
+//         finalSum = oddTotal;
 //         if(oddTotal < num) { //this is to fix the issue of adding to total TOO SOON
-//           final = oddTotal;
-//           console.log(final+"_");
+//           finalSum = oddTotal;
+//           console.log(finalSum+"_");
 //         }
 //       }
 //       total = a + b;
@@ -25,7 +25,7 @@
 //       a = total;
 //
 //     }
-//     console.log(final);
+//     console.log(finalSum);
 // }
 //
 // sumFibs(1000);
@@ -35,14 +35,14 @@
 //   var b = 1;
 //   var total = 0;
 //   var oddTotal = 2;
-//   var final;
+//   var finalSum;
 //
 // do {
 //   if (total % 2 != 0){
 //        oddTotal = oddTotal + total;
 //        if(oddTotal < num) {
-//          final = oddTotal;
-//          console.log(final+"_");
+//          finalSum = oddTotal;
+//          console.log(finalSum+"_");
 //        }
 //      }
 //      total = a + b;
@@ -53,7 +53,7 @@
 //
 //    }
 // while (oddTotal < num);
-//  console.log(final);
+//  console.log(finalSum);
 // }
 //
 // sumFibs(1000);
@@ -63,27 +63,26 @@ function sumFibs(num) {
   var b = 1;
   var total = 0;
   var oddTotal = 2;
-  var final;
+  var finalSum;
 
   while (oddTotal < num){
-   if (total % 2 != 0){
+   if (total % 2 != 0){ //will only contribute negative integers to the total
+
         oddTotal = oddTotal + total;
-        final = oddTotal;
+        finalSum = oddTotal;
+
         if(oddTotal < num) { //this is to fix the issue of adding to total TOO SOON
-          final = oddTotal;
-          console.log(final+"_");
+          finalSum = oddTotal; 
         }
       }
       total = a + b;
-you need to add a condition in here to check the value of the two integers before being added together.
-       if (a < total && b < total) {
-           you know what i mean?
+//you need to add a condition in here to check the value of the two integers before being added together.
+       if (a < num && b < num) {
+
           }
-      console.log("a: " + a);
-      console.log("b: " + b);
       b = a;
       a = total;
 
     }
-    console.log(final);
+    console.log(finalSum);
 }
