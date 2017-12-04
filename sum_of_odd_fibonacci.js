@@ -61,28 +61,26 @@
 function sumFibs(num) {
   var a = 1;
   var b = 1;
-  var total = 0;
+  var total = 1;
   var oddTotal = 2;
-  var finalSum;
+  var final = 0;
 
-  while (oddTotal < num){
-   if (total % 2 != 0){ //will only contribute negative integers to the total
+  while (total < num){
 
-        oddTotal = oddTotal + total;
-        finalSum = oddTotal;
-
-        if(oddTotal < num) { //this is to fix the issue of adding to total TOO SOON
-          finalSum = oddTotal; 
-        }
-      }
-      total = a + b;
-//you need to add a condition in here to check the value of the two integers before being added together.
-       if (a < num && b < num) {
-
-          }
       b = a;
       a = total;
+      total = a + b;
+
+       if (total % 2 != 0){
+           if(oddTotal < num) {
+             oddTotal = oddTotal + total;
+             final = oddTotal;
+           }
+       }
+
 
     }
-    console.log(finalSum);
+    return final;
 }
+
+sumFibs(75025);
