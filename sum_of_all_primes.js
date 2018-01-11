@@ -1,35 +1,42 @@
-function sumPrimes(num) {
-  //so it either equals 1, or itself.
-  //what if you just check if it can be evenly divided by half of itself
-  var final = 0;
-  var a;
-   // console.log(25%3)
-   // return;
-  for (var i = 0; i < num; i++){
-    a = i%2;
-// so you need to add a qualifier that is checking for both
-//i%2 and i%3. if either === 0 then its prime.
-//this is on top of the prexisiting conditions you already have
-    console.log("-------");
-    if((a === 1 || i===2) && (i > 1)){ // this isnt right because its receiving 9.
-      console.log("first: "+i);
-      if ((i%2 != 0 && i%3 != 0) || (i === 2 || i === 3)){
-        console.log("prime #: "+i);
-        final = final+i;
-        console.log("calc: "+final)
-        //this now doesnt work because it will receive 25 as prime
-        //which it shouldnt  because 25%2 = 1.
-        /* i think this would work if you could use the positive
-        instead of the negative as the if statement condition.
-        like if %2 or %3 === 0 then DONT do this lol.
-        because %2 returns 1 for 9, but %3 returns 0.
-        */
-      }
+// function sumPrimes(num) {
+//
+//   var final = 0;
+//
+//   for (var i = 0; i < num; i++){
+//     if(i > 1 && i <= num){
+//      // console.log("first: "+i);
+//       if (i === 2 || i === 3){
+//         final = final+i;
+//       } else if ((i%2 === 0 || i%3 === 0)){
+//        // console.log("not prime #: "+i);
+//       } else {
+//         console.log("prime: "+i);
+//         final = final+i;
+//      //   console.log("calc: "+final)
+//       }
+//
+//     }
+//   }
+//
+//   console.log(final);
+// }
+//
+// sumPrimes(977);
 
+function sumPrimes(num) {
+  var total = 0, sieve = [], primes = [];
+  for (var i = 2; i <= num; i++){
+    if (!sieve[i]){
+      primes.push(i); //pushes 2 first to the list...
+      for (j = i << 1; j <= num; j += i){ //im not clear on the << and the += operators
+        sieve[j] = true;
+      }
     }
   }
-
-  console.log("final: "+final);
+for (i = 0; i < primes.length; i++){
+  total = total + primes[i];
+}
+console.log(total);
 }
 
-sumPrimes(30);
+sumPrimes(10);
