@@ -20,11 +20,16 @@ Return true if the string is a valid US phone number; otherwise return false.
 function telephoneCheck(str) {
   str = clean(str);
   var array = str.split('');
+  console.log(array.length);
   array.length === 10 ? truthy() : falsy();
 
-  console.log(str);
-
-  return true;
+  if ((array.length === 11) && (array[0] === "1")){
+    truthy();
+    return true;
+  } else {
+    falsy();
+    return false;
+  }
 }
 
 function clean(test){
@@ -36,7 +41,7 @@ function clean(test){
 }
 
 function truthy() {
-  console.log(false);
+  console.log(true);
   return true;
 }
 function falsy() {
@@ -45,4 +50,4 @@ function falsy() {
 }
 
 
-telephoneCheck("123**&!!asdf#");
+telephoneCheck("5555555555");
