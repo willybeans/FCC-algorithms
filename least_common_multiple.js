@@ -8,7 +8,7 @@ function smallestCommons(arr) {
 
 //console.log(array.length);
 //this needs to be in a while loop so it keeps happening
-while ((counter < 263341))
+while ((counter < 100) || (test.length != array.length))
 {
   for (var i = 0; i < array.length; i++){ //here is our counter loop
       var y = array[i].length - 1;
