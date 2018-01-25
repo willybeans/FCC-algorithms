@@ -1,45 +1,47 @@
 
 function smallestCommons(arr) {
-  var array = [], test = [], counter = 0, matches = 0;
+  var array = [], test = [], counter = 0, match = 0;
   var a = (arr[0] < arr[1]) ? arr[0] : arr[1];
   var b = (a === arr[0]) ? arr[1] : arr[0];
-
   generateNestedArray(a,b,array);
+  var arrayLength = array.length;
+
 
 //console.log(array.length);
 //this needs to be in a while loop so it keeps happening
-while ((counter < 100) || (test.length != array.length))
-{
-  for (var i = 0; i < array.length; i++){ //here is our counter loop
+while (match === 0){
+  for (var i = 0; i < arrayLength; i++){ //here is our counter to add one to each part
       var y = array[i].length - 1;
       var x = array[i][0] + array[i][y];
       array[i].push(x);
   }
+var last = array[0].length - 1; //we are only testing the last case
 
-  for (var i = 0; i < array[0].length; i++) {
-      array.forEach( (num) => {
-        num.forEach( (numNum) => {
-         if (numNum === array[0][i]){
-           test.push(numNum);
-           matches ++;
-         }
-        })
-    });
-    if (test.length === array.length){
-      console.log("solution: " + test)
-    } else {
-      test = [];
-      matches = 0;
+for (var i = arrayLength - 1; i >= 1; i--) {
+  // console.log("test number: " + array[0][last]);
+  // console.log("test case: " + array[i])
+  for (var j = 0; j <= last; j++){
+    //console.log("internal case: "+ array[i][j])
+    if (array[i][j] === array[0][last]) {
+      test.push(array[i][j]);
     }
   }
-  console.log(counter);
-  counter++
 }
-//console.log(array);
+
+    if (test.length === (array.length - 1)){
+      console.log("solution: " + test)
+      match = test[0];
+      return test[0];
+    } else {
+      test = [];
+    }
+
+    counter++;
+  }
 }
 
 
-smallestCommons([23,18]);
+console.log(smallestCommons([23,18]));
 
 function generateNestedArray(a,b,array){
   while (a <= b){
