@@ -1,57 +1,72 @@
 function checkCashRegister(price, cash, cid) {
-  //step one is to subtract the cash given from
-  //the price
-  //step two you now have a value left over which needs to make use of whats in the register
-  //at this point i would need to write logic for what to prioritize in the cash register.
-  //to which i would say always start top down
-  //so register function should be
-  //a) top down ...by...
-  //b) subtraction? if less than 0, go to the next key?
-  /*
-  ok so it will loop from top down. for each iteration it will reduce by one currency,
-  then loop back through all the currencies again.
-  The probblem i can see immediately is the lack of checking
-  the drawer values. And also, how would you iterate through
-  the values in the proper order? You would receive the array
-  in order i hope, so in that case i would be able to assume
-  that the last value would be the one to start with.
+    const moneyValues = {
+      'PENNY': 0.01,
+      'NICKEL': 0.05,
+      'DIME': 0.10,
+      'QUARTER': 0.25,
+      'ONE': 1,
+      'FIVE': 5,
+      'TEN': 10,
+      'TWENTY': 20,
+      'ONE HUNDRED': 100
+    };
+    const returnValues = {
+      INSUFICIENT_FUNDS: 'INSUFICIENT_FUNDS',
+      CLOSED: 'CLOSED',
+      OPEN: 'OPEN'
+    };
 
-  so lets say 50 cents is left, when it finally loops
-  and gets to the quarters, perhaps it should be more efficient
-  and keep looping over quarters until quarters arent relevant/available
+    let returnMessage = {
+      status: '',
+      change: []
+    };
 
-  so it needs to prioritize the availability of the specific change
-  
+    let change = cash - price;
+    let arrayIndex = cid.length - 1;
 
-*/
-  const money = {
-  'PENNY': 0.01,
-  'NICKEL': 0.05,
-  'DIME': 0.10,
-  'QUARTER': 0.25,
-  'ONE': 1,
-  'FIVE': 5,
-  'TEN': 10,
-  'TWENTY': 20
-  'ONE HUNDRED': 100
-}
-  var change;
-  // Here is your change, ma'am.
-  return {
-  status: '',
-  change: ''
-  };
+    if(change > 0) {
+      returnMessage = cashierGivesChange(cid, change, returnValues, moneyValues, returnMessage);
+      return returnMessage;
+    } else if(change === 0) {
+      returnMessage.status = returnValues.CLOSED;
+    return returnMessage;
+  }
+
 }
 
-// Example cash-in-drawer array:
-// [["PENNY", 1.01],
-// ["NICKEL", 2.05],
-// ["DIME", 3.1],
-// ["QUARTER", 4.25],
-// ["ONE", 90],
-// ["FIVE", 55],
-// ["TEN", 20],
-// ["TWENTY", 60],
-// ["ONE HUNDRED", 100]]
+function cashierGivesChange(cid, change, returnValues, moneyValues, returnMessage){
 
-checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+  let totalCashInDrawer = 0;
+  cid.forEach( x => {
+    totalCashInDrawer = totalCashInDrawer + x[1];
+  });
+  let roundedTotal = totalCashInDrawer.toFixed(2);
+
+  if(roundedTotal < change) {
+    returnMessage.status = returnValues.INSUFICIENT_FUNDS;
+    return returnMessage;
+  } else if (roundedTotal === change) {
+    reutnrMessage.status = returnValues.CLOSED;
+    returnMessage.change = cid;
+  } else {
+    while ((change > 0) && (arrayIndex >= 0)) {
+      let currentCurrency = moneyValues[cid[arrayIndex][0]];
+      if(currentCurrency <= change) {
+        cid[arrayIndex][1] -= currentCurrency;
+        change -= currentCurrency;
+      } else {
+          console.log('else');
+          arrayIndex--;
+      }
+    }
+
+  }
+
+
+
+
+
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1],
+["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
